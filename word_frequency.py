@@ -27,35 +27,45 @@ def print_word_freq(file):
         words = file.read()
         
     words_dic = {}
-    #print(words)
-
     words = words.lower() #make lowercase
     words = words.rstrip()
-    words_2 = []
+    words = words.strip()
+    #print("testing", words)
+    
     #need to remove punctuation now
     for i in words:
         #print(i) #loop through by character
         if i in punctuation_list:
             words = words.replace(i, "")
-    print(words)
-    
-    
-    words = words.split(" ")
-    print("after split:", words) 
+    #print(words)
+    words_2 = words
+    for i in STOP_WORDS:
+        if i in words_2:
+            words = words_2.replace(i, "")
+
+    words = words.split()
+    #words = [x.strip() for x in words.split()] Nope didn't need this, too complex! above does same
+    #print("after split:", words) 
     #print(type(words))
     
     #remove stop_words
     #print(words_copy)
-    for i in STOP_WORDS:
-        if i in words:
-            words.remove(i)
-    print("stopwords removed:", words)
-    
+    #words_2 = words
+    for element in STOP_WORDS:
+        if element in words:
+            words.remove(element)
+    #print("stopwords removed:", words)
+   
     #This counts the frequency of the words and adds the key/value pairs to our dictionary
     #List comprehension?? - https://www.educative.io/edpresso/how-to-count-the-number-of-occurrences-of-a-list-item-in-python
     words_dic = (dict((x,words.count(x)) for x in set(words)))
-    print("Here's the dictionary:", words_dic)
+    #print("Here's the dictionary:", words_dic)
+    #print(words_dic.keys())
     
+    #print(sorted(words_dic.items(), key=lambda seq: seq[1]))
+    for key, value in sorted(words_dic.items(), key=lambda seq: seq[1], reverse=True):
+        print(key, " | ", value)
+    #print(sorted(words_dic, reverse=True))
     #removes duplicate words, but how to make count? 
     #for i in words:
         #if i not in words_2:
