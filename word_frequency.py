@@ -4,7 +4,7 @@ from string import punctuation
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
-    'will', 'with'
+    'will', 'with',
 ]
 #don't change anything above this
 #import the python string library so we can get a list of punctuation 
@@ -38,11 +38,7 @@ def print_word_freq(file):
         if i in punctuation_list:
             words = words.replace(i, "")
     #print(words)
-    words_2 = words
-    for i in STOP_WORDS:
-        if i in words_2:
-            words = words_2.replace(i, "")
-
+   
     words = words.split()
     #words = [x.strip() for x in words.split()] Nope didn't need this, too complex! above does same
     #print("after split:", words) 
@@ -50,10 +46,14 @@ def print_word_freq(file):
     
     #remove stop_words
     #print(words_copy)
-    #words_2 = words
-    for element in STOP_WORDS:
-        if element in words:
-            words.remove(element)
+    words_2 = words
+    
+    
+    for i in words_2:
+        if i in STOP_WORDS:
+            words.remove(i)
+            
+    #words = words_2
     #print("stopwords removed:", words)
    
     #This counts the frequency of the words and adds the key/value pairs to our dictionary
