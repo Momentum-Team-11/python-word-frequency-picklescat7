@@ -4,7 +4,7 @@ from string import punctuation
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
-    'will', 'with',
+    'will', 'with'
 ]
 #don't change anything above this
 #import the python string library so we can get a list of punctuation 
@@ -34,11 +34,11 @@ def print_word_freq(file):
     
     #need to remove punctuation now
     for i in words:
-        #print(i) #loop through by character
+        #loop through by character
         if i in punctuation_list:
             words = words.replace(i, "")
     #print(words)
-   
+
     words = words.split()
     #words = [x.strip() for x in words.split()] Nope didn't need this, too complex! above does same
     #print("after split:", words) 
@@ -46,13 +46,19 @@ def print_word_freq(file):
     
     #remove stop_words
     #print(words_copy)
-    words_2 = words
-    
-    
-    for i in words_2:
-        if i in STOP_WORDS:
-            words.remove(i)
-            
+    words_2 = []
+    #print(len(words))
+    #print(len(words_2))
+    # this is only removing the first incidence of the element :(
+    #while len(words_2) <= len(words):
+    for i in words:
+        if i not in STOP_WORDS:
+            #words_2 += i #nope counting letters or something!
+            words_2.append(i) 
+        #print(words_2)  
+    words = words_2         
+    #print(len(words_2))      
+    #print(words_2)        
     #words = words_2
     #print("stopwords removed:", words)
    
@@ -64,7 +70,7 @@ def print_word_freq(file):
     
     #print(sorted(words_dic.items(), key=lambda seq: seq[1]))
     for key, value in sorted(words_dic.items(), key=lambda seq: seq[1], reverse=True):
-        print(key, " | ", value)
+        print(f"{key} | {value}")
     #print(sorted(words_dic, reverse=True))
     #removes duplicate words, but how to make count? 
     #for i in words:
@@ -78,11 +84,7 @@ def print_word_freq(file):
     #print(type(words_2))   
 #word_count_dic = {}    
 #words = file() #can we change this to words?
-#def count_words(string):
-        
-        
-        
-        
+#def count_words(string):    
         
 
 # don't change anything below this
